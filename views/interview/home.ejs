@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Interview Prep</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/interview/css/styles.css">
+        <link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class=" landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="/">Interview-prep Tracker</a></h1>
+					<nav class="navbar-fixed">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<% if (user) { %>
+								<% if (user.firstName){ %>
+									<li><a href="/userUpdation" class="button">Hi <%= user.firstName%></a></li>
+									<li><a href="/logout">Log out</a></li>
+									<% } else { %>
+										<li><a href="/userUpdation" class="button">Hi <%= user.email%></a></li>
+										<li><a href="/logout">Log out</a></li>
+										
+								<% } %>
+							<% } else { %>
+								<li><a href="#two" class="button  scrolly">Log In</a></li>
+							<!-- <a href="#three" class="goto-next scrolly" >Next</a> -->
+
+							<li><a href="#three" class="button primary scrolly">Sign Up</a></li>
+							<% } %>
+
+						</ul>
+					</nav>
+				</header>
+            
+
+
+                <!-- Portfolio Grid-->
+<section class="page-section bg-dark" id="portfolio">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="section-heading text-uppercase">Companies</h2>
+			<h3 class="section-subheading text-muted">Choose from the below Company</h3>
+		</div>
+		<div class="row">
+			<% items.forEach(function(image) { %>
+
+			<div class="col-lg-4 col-sm-6 mb-4">
+				<div class="portfolio-item">
+					<a class="portfolio-link" data-toggle="modal"href="/interviews/<%= image.name%>">
+						<div class="portfolio-hover">
+							<!-- <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div> -->
+						</div>
+						<img src="data:image/<%=image.img.contentType%>;base64,
+							 <%=image.img.data.toString('base64')%>" class = "myImageStyle">
+					</a>
+					<div class="portfolio-caption" >
+						<a href="/interviews/<%= image.name%>"><div class="portfolio-caption-heading text-muted" ><%= image.name%></div></a>
+						<div class="portfolio-caption-subheading text-muted">Illustration
+                        </div>
+					</div>
+				</div>
+			</div>
+			
+			<% }) %>
+			
+
+			
+		</div>
+				
+		<a href="/add_experience" class="button" style="margin-left: 45%">Add Experience</a>
+					
+	</div>
+</section>
+
+			
+            
+
+
+			
+<%- include('../partials/footer'); -%>

@@ -1,0 +1,27 @@
+<%- include('partials/header'); -%>
+<section id="four" class="wrapper style1 special fade-up">
+	<div class="container">
+		<header class="major">
+			<h2>All Topics</h2>
+			<p>Click on below topics to solve problems</p>
+		</header>
+		<div class="box alt">
+			<div class="row gtr-uniform">
+				<% if (topics.length > 0) { %>
+					<% topics.forEach(topic => { %>
+	
+						<section class="col-4 col-6-medium col-12-xsmall">
+							<a href="topics/<%= topic.name %>"><span class="icon solid alt major <%= topic.iconName %>"></span></a>
+							<!-- <a href="#" class="icon brands alt <%= topic.iconName %>"><span class="label">Instagram</span></a> -->
+
+							<h3><a href="topics/<%= topic.name %>"><%= topic.name %></a></h3>
+						</section>
+						<%}) %>
+						<% } %>
+				
+			</div>
+		</div>
+		<a href="/form" class="button">Add Question</a>
+	</div>
+</section>			
+<%- include('partials/footer'); -%>

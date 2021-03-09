@@ -1,0 +1,34 @@
+<%- include('partials/header'); -%>
+
+<section id="four" class="wrapper style1 special fade-up">
+	<div class="container">
+		<header class="major">
+			<h2>All Questions</h2>
+			<p>Click on below question to redirect on that particular question</p>
+		</header>
+		<div class="box alt">
+			<div class="row gtr-uniform">
+
+				<% if (questions.length > 0) { %>
+					<% questions.forEach(question => { %>
+						<% if (question.approved) { %>
+						<section class="col-4 col-6-medium col-12-xsmall">
+							<span>
+							<a href="/questions/<%= question.name %>"><span class="icon solid alt major <%= iconName%>"></span></a>
+							<h3><a href="/questions/<%= question.name %>"><%= question.name %></a></h3>
+						</span>						
+							<div class="notShow" style="color: yellow;">
+								<i><%= question.link %></i>
+							</div>
+						</section>
+						<% } %>
+						
+						<%}) %>
+						<% } %>
+				
+			</div>
+		</div>
+	</div>
+</section>			
+<%- include('partials/footer'); -%>
+

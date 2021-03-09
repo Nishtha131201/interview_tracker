@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Strata by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="user/assets/css/main.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            input, select, textarea, option{
+                color : #C0C0C0;
+            }
+            select {
+                padding: 5px;
+                background: transparent;
+                -webkit-appearance: none;
+
+            }
+            select option{
+                background-color:transparent;
+            }
+        </style>
+        
+	</head>
+	<body class="is-preload" style="background-color: #1C1D26;">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                
+                <a style="color: #ffffff;" class="navbar-brand" href="/">Interview-prep Tracker</a>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (user) { %>
+                        <% if (user.firstName){ %>
+                            <li><a href="/userUpdation">Hi <%= user.firstName%></a></li>
+                        <% }%>
+                        <% } %>
+                   
+                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+      
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+                    
+                    <a href="#" ><img class="myImageStyle" id="rcorners5" src="
+                        <% if (user && user.img && user.img.data) { %>
+                            data:image/<%=user.img.contentType%>;base64, <%=user.img.data.toString('base64')%> 
+                        <% } else { %>
+                            user/images/avatar.jpg
+                        <% } %>
+                        " alt="" /></a>
+					<h1><strong> <% if (user && user.firstName && user.lastName) { %>
+                        <%= user.firstName %> <%= user.lastName %>
+                    <% } else { %>
+                        <%= user.email %>
+                    <% } %></strong> <br />
+                    <% if (user && user.shortDescription) { %>
+                        <%= user.shortDescription %>
+                    <% } else { %>
+                         Your shortDescription will be shown here!
+                    <% } %>
+                            </a>.</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+            <div id="main">
+                <h2 style="margin-bottom: 1cm; color: #C0C0C0;">Add your Interview Experience</h2>
+                <hr style="margin-top: -1cm; width: 75%;">
+
+				<!-- Three -->
+                <form action="/add_experience", method="POST", enctype='application/x-www-form-urlencoded'>
+                    <div class="form-group">
+                      <label for="email" class="myLabel">Email :</label>
+                        <label for="" class="myLabel"><%= user.email %></label>
+                    </div>
+                    <div class="form-group">
+                        <label for = "firstName" class="myLabel">Name :</label>
+                        <label for="" class="myLabel"><%= user.firstName %> <%= user.lastName %></label>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for = "branch" class="myLabel">Year</label>
+                        <input type="text"style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3); color : #C0C0C0;" name= "year"
+                        />
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="branch" class="myLabel">Branch</label>
+
+                        <select name="branch" id="company" style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3);" >
+                            <% if (branches.length > 0) { %>
+                              <% branches.forEach((branch) =>  { %>
+                                <option style="background-color: transparent;"  ><%= branch %></option>
+                              <% }) %>
+                              <% } %>
+                          </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="myLabel">Company</label>
+
+                        <select name="company" id="company" style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3);" >
+                            <% if (companies.length > 0) { %>
+                              <% companies.forEach((company) =>  { %>
+                                <option style="background-color: transparent;" value = "<%= company.name %>" ><%= company.name %></option>
+                              <% }) %>
+                              <% } %>
+                          </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="experience" class="myLabel">Experience</label>
+                      <textarea type="text" style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3); height: 250px;" name="experience"
+                      ></textarea>
+                    </div>
+                    
+                      
+                    <button type="submit" class="btn btn-danger btn-lg">Submit</button>
+                  </form>   
+
+				<!-- Four -->
+				
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

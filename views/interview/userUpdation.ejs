@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Interview-prep Tracker</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="user/assets/css/main.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            input, select, textarea{
+                color : #C0C0C0;
+            }
+        </style>
+        
+	</head>
+	<body class="is-preload" style="background-color: #1C1D26;">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                
+                <a style="color: #ffffff;" class="navbar-brand" href="/">Interview-prep Tracker</a>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <% if (user) { %>
+                        <% if (user.firstName){ %>
+                            <li><a href="/userUpdation">Hi <%= user.firstName%></a></li>
+                        <% }%>
+                        <% } %>
+                   
+                  <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+      
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+                    
+                    <a href="#" ><img class="myImageStyle" id="rcorners5" src="
+                        <% if (user && user.img && user.img.data) { %>
+                            data:image/<%=user.img.contentType%>;base64, <%=user.img.data.toString('base64')%> 
+                        <% } else { %>
+                            user/images/avatar.jpg
+                        <% } %>
+                        " alt="" /></a>
+					<h1><strong> <% if (user && user.firstName && user.lastName) { %>
+                        <%= user.firstName %> <%= user.lastName %> :
+                        
+                    <% } else { %>
+                        <%= user.email %>
+                    <% } %></strong> <br />
+                    <% if (user && user.shortDescription) { %>
+                        <%= user.shortDescription %>
+                    <% } else { %>
+                         Your shortDescription will be shown here!
+                    <% } %>
+                            </a>.</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+            <div id="main">
+                <h2 style="margin-bottom: 1cm; color: #C0C0C0;">User Profile</h2>
+                
+
+				<!-- Three -->
+                <form action="/userUpdation" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="email" class="myLabel">Email</label>
+                      <input type="email" style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3); color : #C0C0C0" name="email"
+                      placeholder = "<%= user.email %>">
+                    </div>
+                    <div class="form-group">
+                        <label for = "firstName" class="myLabel">FirstName</label>
+                        <input type="text"style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3); color : #C0C0C0" name= "firstName"
+                        placeholder = "<%=user.firstName %>" />
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for = "lastName" class="myLabel">LastName</label>
+                        <input type="text"style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3); color : #C0C0C0;" name= "lastName"
+                        placeholder = "<%=user.lastName%>" />
+                        
+                    </div>
+                    <div class="form-group">
+                      <label for="sD" class="myLabel">Short Description</label>
+                      <textarea type="text" style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3);" name="sD"
+                      placeholder = "<%=user.shortDescription%>"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image" class="myLabel" >Upload Image</label>
+                        <input type="file" id="image"
+                               name="image" value="" style="background-color: transparent;border: solid 1px rgba(255, 255, 255, 0.3);">
+                    </div>
+                    
+                      
+                    <button type="submit" class="btn btn-danger btn-lg">Submit</button>
+                  </form>   
+
+				<!-- Four -->
+				
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

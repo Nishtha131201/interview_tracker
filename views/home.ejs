@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Interview Prep</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="/">Interview-prep Tracker</a></h1>
+					<nav >
+						<ul>
+							<li><a href="/">Home</a></li>
+							<% if (user) { %>
+								<% if (user.firstName){ %>
+									<li><a href="/userUpdation" class="button">Hi <%= user.firstName%></a></li>
+									<li><a href="/logout">Log out</a></li>
+									<% } else {%>
+										<li><a href="/userUpdation" class="button">Hi <%= user.email%></a></li>
+										<li><a href="/logout">Log out</a></li>
+
+							<% } } else { %>
+								<li><a href="#two" class="button  scrolly">Log In</a></li>
+							<!-- <a href="#three" class="goto-next scrolly" >Next</a> -->
+
+							<li><a href="#three" class="button primary scrolly">Sign Up</a></li>
+							<% } %>
+
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Banner -->
+				<section id="banner">
+					<div class="content">
+						<header>
+							<h2>Welcome</h2>
+							<p>Want to prepare for Interview ? Yaaa.. You came at right place!</p>
+						</header>
+						<span class="image"><img src="images/Logo.png" alt="" /></span>
+					</div>
+					<a href="#one" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- One -->
+				<section id="one" class="spotlight style1 bottom">
+					<span class="image fit main"><img src="images/Campus.jpg" alt="" /></span>
+					<div class="content">
+						<div class="container">
+							<div class="row">
+								<div class="col-4 col-12-medium">
+									<header>
+										<h2>What are you waiting for! Do Practice Now</h2>
+										<p>We have thousands of problem for you</p>
+									</header>
+								</div>
+								<div class="col-4 col-12-medium">
+									<a href="\topics"><span class="icon solid alt major fa-pen-fancy %>"></span></a>
+									<h2><a href="\topics" style="color: white;">Programming Section</a>
+									</h2>
+								</div>
+								<div class="col-4 col-12-medium">
+									<a href="\interviews"><span class="icon solid alt major fa-user-friends %>"></span></a>
+
+									<h2><a href="\interviews" style="color: white;">Interview Experience</a>
+									</h2>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- Two -->
+			<section id="two" class="spotlight style2 right">
+				<span class="image fit main"><img src="images/Campus3.jpg" alt="" /></span>
+				<div class="content">
+				  <header>
+					<h2>Login Here</h2>
+					
+				  </header>
+				  <form id="loginForm">
+					<label for="email">Email</label>
+					<input type="text" name = "email"/> 
+					<div class="email error"></div>
+					<label for="password" style="padding-top: 1cm;">Password</label>
+					<input type="password" name="password" id="" />
+					<div class="password error"></div>
+					<ul class="actions" style="margin-top: 1cm;">
+					  <li><button style="font-size: 16px;" class="button">Login</li></button>
+					  <li><a href="\signup" style="color: white;"  class="scrolly" >Don't have an account? Signup Instead</a></li>
+					</ul>
+				  </form>
+				</div>
+				<a href="#three" class="goto-next scrolly" >Next</a>
+			  </section>
+			  
+			<!-- Three -->
+            <section id="three" class="spotlight style3 left">
+				<span class="image fit main bottom"><img src="images/campus4.jpg" alt="" /></span>
+				<div class="content">
+				  <header>
+					<h2>SignUp</h2>
+				  </header>
+				  <form action="">
+					<label for="email2">Email</label>
+					<input type="text" name = "email2" required/> 
+					<div class="email2 error2"></div>
+					<label for="password2" style="padding-top: 1cm;" autocomplete="on">Password</label>
+					<input type="password" name="password2" required/>
+					<div class="password2 error2"></div>
+					<ul class="actions" style="margin-top: 1cm;">  
+					  <li><button style="font-size: 16px;" class="button">SignUp</button></li>
+					  <li><a href="\login" style="color: white" class="scrolly" >Already have an account? Login Instead</a></li>
+					  
+					</ul>
+				  </form>
+				</div>
+				<!-- <a href="#four" class="goto-next scrolly">Next</a> -->
+			  </section>
+            
+
+
+			
+<%- include('partials/footer'); -%>
+
+<script>
+	const form = document.querySelector('form');
+	console.log("Bhai kahan hai tu");
+	const emailError = document.querySelector('.email.error');
+	const passwordError = document.querySelector('.password.error');
+	console.log("Form : ", form);
+	if (form){
+		console.log("Inside form");
+		form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+	
+		// reset errors
+		emailError.textContent = '';
+		passwordError.textContent = '';
+	
+		// get values
+		const email = form.email.value;
+		const password = form.password.value;
+		const temp = JSON.stringify({email, password});
+		console.log("printed value in login : ", temp);
+		console.log("abe value print to ho");
+	
+		try {
+			const res = await fetch('/login', { 
+			method: 'POST', 
+			body: JSON.stringify({ email, password }),
+			headers: {'Content-Type': 'application/json'}
+			});
+			const data = await res.json();
+			console.log(data);
+			if (data.errors) {
+			emailError.textContent = data.errors.email;
+			passwordError.textContent = data.errors.password;
+			}
+			if (data.user) {
+			location.assign('/');
+			}
+	
+		}
+		catch (err) {
+			console.log(err);
+		}
+		});
+}
+  </script> 
+  
+
+<script>
+	const form2 = document.querySelectorAll('form')[1];
+	const emailError2 = document.querySelector('.email2.error2');
+	const passwordError2 = document.querySelector('.password2.error2');
+  
+	form2.addEventListener('submit', async (e) => {
+	  e.preventDefault();
+  
+	  // reset errors
+	  emailError2.textContent = '';
+	  passwordError2.textContent = '';
+  
+	  // get values
+	  const email = form2.email2.value;
+	  const password = form2.password2.value;
+		// console.log("email2 and pass : ", email2, password2);
+		console.log(JSON.stringify({email, password}));
+	  try {
+		const res = await fetch('/signup', { 
+		  method: 'POST', 
+		  body: JSON.stringify({ email, password }),
+		  headers: {'Content-Type': 'application/json'}
+		});
+		console.log("res = ", res);
+		const data2 = await res.json();
+		console.log("data2 = ", data2);
+		if (data2.errors) {
+		  emailError2.textContent = data2.errors.email;
+		  passwordError2.textContent = data2.errors.password;
+		}
+		if (data2.user) {
+		  location.assign('/');
+		}
+  
+	  }
+	  catch (err) {
+		console.log(err);
+	  }
+  
+	});
+  </script>

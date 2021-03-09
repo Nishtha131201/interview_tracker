@@ -1,0 +1,75 @@
+<%- include('../partials/header'); -%>
+
+
+<section id="two" class="spotlight right">
+  <!-- <span class="image fit main"><img src="books.jpg" alt="" /></span> -->
+  <span class="image fit main"><img src="books.jpg" alt="" /></span>
+  <div class = "content">
+  <form action="/saveQuestion">
+  <h2>Share Your Experience</h2>
+  <label for="branch">Branch</label>
+  <input type="text" name="branch" required />
+  <div class="branch error"></div>
+  <!-- <label for="topic">Topic</label>
+  <input type="text" name="topic" required /> -->
+  <label for="company" style="margin-top: 0.4cm;">Company</label>
+  <select name="company" id="company" >
+    <% if (companies.length > 0) { %>
+      <% companies.forEach((company) =>  { %>
+        <option value = "<%= company.name %>"><%= company.name %></option>
+      <% }) %>
+      <% } %>
+    <!-- <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option> -->
+  </select>
+  <label for="experience"  style="margin-top: 0.4cm;">Experience</label>
+  <input type="text" name="experience" style="padding: 5cm;" required />
+  <div class="experience error"></div>
+  <button class="button" style="margin-top: 0.6cm;">Save</button>
+</form>
+</div>
+</section>
+<%- include('../partials/footer'); -%>
+
+<script>
+  const form = document.querySelector('form');
+  const nameError = document.querySelector('.name.error');
+  const linkError = document.querySelector('.link.error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // reset errors
+    nameError.textContent = '';
+    linkError.textContent = '';
+
+    // get values
+    const name = form.name.value;
+    const link = form.link.value;
+    const topic = form.topic.value;
+
+    try {
+      const res = await fetch('/form', { 
+        method: 'POST', 
+        body: JSON.stringify({ name, topic, link}),
+        headers: {'Content-Type': 'application/json'}
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        nameError.textContent = data.errors.email;
+        linkError.textContent = data.errors.password;
+      }
+      if (data.quest) {
+        location.assign('/topics');
+      }
+
+    }
+    catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>

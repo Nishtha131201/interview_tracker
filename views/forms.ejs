@@ -1,0 +1,79 @@
+<%- include('partials/header'); -%>
+
+
+<section id="two" class="spotlight style2 right">
+  <!-- <span class="image fit main"><img src="books.jpg" alt="" /></span> -->
+  <span class="image fit main"><img src="books.jpg" alt="" /></span>
+  <div class = "content">
+  <form action="/saveQuestion">
+  <h2>Save Question</h2>
+  <label for="name">Name</label>
+  <input type="text" name="name" required />
+  <div class="name error"></div>
+  <!-- <label for="topic">Topic</label>
+  <input type="text" name="topic" required /> -->
+  <label for="topic" style="margin-top: 0.4cm;">Topic</label>
+  <select name="topic" id="topic" >
+    <% if (topics.length > 0) { %>
+      <% topics.forEach((topic) =>  { %>
+        <option value = "<%= topic.name %>"><%= topic.name %></option>
+      <% }) %>
+      <% } %>
+    <!-- <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option> -->
+  </select>
+
+  <label for="link"  style="margin-top: 0.4cm;">Link</label>
+
+  <input type="text" name="link" required />
+  <div class="link error"></div>
+  <button class="button" style="margin-top: 0.6cm;">Save</button>
+</form>
+</div>
+</section>
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector('form');
+  const nameError = document.querySelector('.name.error');
+  const linkError = document.querySelector('.link.error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // reset errors
+    nameError.textContent = '';
+    linkError.textContent = '';
+
+    // get values
+    const name = form.name.value;
+    const link = form.link.value;
+    const topic = form.topic.value;
+
+    try {
+      const res = await fetch('/form', { 
+        method: 'POST', 
+        body: JSON.stringify({ name, topic, link}),
+        headers: {'Content-Type': 'application/json'}
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.errors) {
+        nameError.textContent = data.errors.email;
+        linkError.textContent = data.errors.password;
+      }
+      if (data.quest) {
+
+        location.assign('/topics');
+
+      }
+
+    }
+    catch (err) {
+      console.log(err);
+    }
+
+  });
+</script>

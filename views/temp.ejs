@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Strata by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="user/assets/css/main.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+	</head>
+	<body class="is-preload">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                
+                <a class="navbar-brand" href="#">Interview-prep Tracker</a>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <header id="header">
+            <h1 id="logo"><a href="/">Interview-prep Tracker</a></h1>
+            <nav >
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <% if (user) { %>
+                        <% if (user.firstName){ %>
+                            <li><a href="/userUpdation" class="button">Hi <%= user.firstName%></a></li>
+                            <li><a href="/logout">Log out</a></li>
+                        <% }%>
+                    <% } else { %>
+                        <li><a href="#two" class="button  scrolly">Log In</a></li>
+                    <!-- <a href="#three" class="goto-next scrolly" >Next</a> -->
+
+                    <li><a href="#three" class="button primary scrolly">Sign Up</a></li>
+                    <% } %>
+
+                </ul>
+            </nav>
+        </header>
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="#" class="image avatar"><img src="user/images/avatar.jpg" alt="" /></a>
+					<h1><strong>I am Strata</strong>, a super simple<br />
+					responsive site template freebie<br />
+					crafted by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+				</div>
+			</header>
+
+		<!-- Main -->
+            <div id="main">
+                <h2 style="margin-bottom: 1cm;">User Profile</h2>
+
+
+				<!-- Three -->
+                <form action="/action_page.php">
+                    <div class="form-group">
+                      <label for="email">Email address:</label>
+                      <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                      <label for="pwd">Password:</label>
+                      <input type="password" class="form-control" id="pwd">
+                    </div>
+                    <label for = "firstName">FirstName</label>
+                    <input type="text" name= "firsName" />
+                    <div class="checkbox">
+                      <label><input type="checkbox"> Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>   
+
+				<!-- Four -->
+				
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<ul class="icons">
+						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
