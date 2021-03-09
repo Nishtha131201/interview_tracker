@@ -21,14 +21,5 @@ Interview section- a sneak peak into your senior's experience.
 <img src = "ReadmeImages/signUp.png" height="400">
 
 
-### Companies that you like!!
-<img src = "ReadmeImages/company1.png" height="400">
-
-### Interview experience of your chosen companies 
-<img src = "ReadmeImages/particularExp.png" height="400">
-
-### Add your experience as well
-<img src = "ReadmeImages/AddExp.png" height="400">
-
 ## Wanna know more? Visit the website
 
