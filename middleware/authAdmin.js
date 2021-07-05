@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-const adminEmails = ['roshan@gmail.com', 'myshizu@gmail.com'];
+const adminEmails = ['nishthaioc@gmail.com'];
 
 const isAdmin = (req, res) => {
     const user = res.locals.user;
