@@ -1,38 +1,25 @@
-# Interview-Prep Tracker Website
-Wants to know the interview experience of your senior?
-Wants to solve problems that are most frequent in coding interview?
-Wants to add your interview experience?
-Yes, You came at right place!
+# Interview-Tracker (Coding Club Project)
+Intern season/placements getting closer?
+Wanna know how to prepare for it?
+Don't worry we got ya all covered.
 
 ### Welcome Page
 <img src = "ReadmeImages/homeSS.png" height="400">
-click on scrolly to view the sections
+
 <br/>
 
 ### Section Page
 <img src = "ReadmeImages/twoSection.png" height="400">
-Wants to solve problem then choose the programming section.<br/>
-No, Wants to read other experience, Choose interview section.
+Programming section- practice all you can before the real exam.<br/>
+Interview section- a sneak peak into your senior's experience.
 <br/>
 
-### But wait! Have you logged in first!
+### Login Page
 <img src = "ReadmeImages/login.png" height="400">
 
-### Don't have an account? Don't Worry, Signup here!
+### Sign up Page
 <img src = "ReadmeImages/signUp.png" height="400">
 
 
-### List of all Companies will be shown in interview section! Choose your favourite company XD
-<img src = "ReadmeImages/company1.png" height="400">
+## Wanna know more? Visit the website
 
-### All available experience of chosen company will be shown after clicking on company : 
-<img src = "ReadmeImages/particularExp.png" height="400">
-
-### Wants to add your experience!
-<img src = "ReadmeImages/AddExp.png" height="400">
-
-## This is just one section. There is much more waiting. Visit our website now!
-
-## Contributors: 
-### 1.Roshan Kumar    2.Mansi Sharma
-### 3.Deepika Agrawal  4.Narmin Kauser
